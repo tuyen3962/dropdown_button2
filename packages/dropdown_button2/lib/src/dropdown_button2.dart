@@ -103,6 +103,7 @@ class DropdownButton2<T> extends StatefulWidget {
     this.isDense = false,
     this.isExpanded = false,
     this.focusNode,
+    this.splashFactory,
     this.autofocus = false,
     this.enableFeedback,
     this.alignment = AlignmentDirectional.centerStart,
@@ -158,6 +159,7 @@ class DropdownButton2<T> extends StatefulWidget {
     this.barrierColor,
     this.barrierCoversButton = true,
     this.barrierLabel,
+    this.splashFactory,
     required InputDecoration inputDecoration,
     required bool isEmpty,
     required bool isFocused,
@@ -241,6 +243,8 @@ class DropdownButton2<T> extends StatefulWidget {
 
   /// Called when the dropdown menu opens or closes.
   final OnMenuStateChangeFn? onMenuStateChange;
+
+  final InteractiveInkFeatureFactory? splashFactory;
 
   /// The text style to use for text in the dropdown button and the dropdown
   /// menu that appears when you tap the button.
@@ -848,6 +852,7 @@ class DropdownButton2State<T> extends State<DropdownButton2<T>>
       child: Actions(
         actions: _actionMap,
         child: InkWell(
+          splashFactory: widget.splashFactory,
           mouseCursor: effectiveMouseCursor,
           onTap: _enabled && !widget.openWithLongPress ? _handleTap : null,
           onLongPress: _enabled && widget.openWithLongPress ? _handleTap : null,
